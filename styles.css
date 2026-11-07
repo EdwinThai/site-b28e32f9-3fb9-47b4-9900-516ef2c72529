@@ -1,0 +1,233 @@
+/* =========================================
+   MATCHA HOUSE — Stylesheet
+   Arketyp: Varm & lokal
+   Accentfärg: matchagrön — inget visual_identity-fynd fanns, men "matcha"
+   är bokstavligen produkten och namnet, ett lika starkt och företags-
+   specifikt val som en gissning hade varit svag (regel 4: en tydlig,
+   självsäker kulör, aldrig en urvattnad kompromiss):
+   Bas (varm cream):     #FBF6EA
+   Bas-ton (sektionsvarv):#F1EAD4
+   Text (varm mörkbrun):  #362E1F
+   Sekundär text:         #6B6250
+   Accent (matchagrön):   #6E7C3D
+   Mörk kontrastyta:      #362E1F
+
+   Typsnittsparning (systemfonter, inga externa CDN:er):
+   Rubriker: Georgia / "Iowan Old Style" / serif
+   Brödtext: -apple-system / "Segoe UI" / Arial / sans-serif
+========================================= */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  color: #362E1F;
+  background-color: #FBF6EA;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: #6E7C3D; text-decoration: none; transition: opacity 0.2s ease; }
+a:hover { opacity: 0.75; }
+img { max-width: 100%; display: block; }
+address { font-style: normal; color: #6B6250; }
+ul { list-style: none; }
+
+.skip-link { position: absolute; left: -999px; top: 0; background: #6E7C3D; color: #fff; padding: 0.75rem 1.25rem; font-weight: 700; z-index: 1000; }
+.skip-link:focus { left: 1rem; top: 1rem; }
+
+/* ---- TYPOGRAPHY ---- */
+h1, h2, h3 { font-family: Georgia, "Iowan Old Style", "Times New Roman", serif; color: #362E1F; font-weight: normal; }
+.eyebrow { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #6E7C3D; margin-bottom: 0.85rem; }
+.section-title { font-size: clamp(2rem, 4.2vw, 3.1rem); line-height: 1.12; letter-spacing: -0.01em; margin-bottom: 1.5rem; }
+.section-title--light { color: #FBF6EA; }
+.section-intro, .lead { max-width: 65ch; font-size: 1.08rem; color: #6B6250; }
+.section-intro { margin-bottom: 2.5rem; }
+.lead { margin-bottom: 1.1rem; }
+p { max-width: 65ch; color: #6B6250; }
+.om-text p { margin-bottom: 1.1rem; }
+.om-text p:last-child { margin-bottom: 0; }
+
+/* ---- CONTAINER / SECTION RHYTHM ---- */
+.container { max-width: 1120px; margin: 0 auto; padding: 0 1.5rem; }
+.section { padding: 6.5rem 0; }
+.section-tint { background-color: #F1EAD4; }
+.section-dark { background-color: #362E1F; }
+
+/* ---- SCROLL REVEAL ---- */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+/* ---- BUTTONS ---- */
+.btn { display: inline-block; padding: 0.9rem 2.1rem; font-size: 1rem; font-weight: 700; border-radius: 999px; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease; text-align: center; }
+.btn-primary { background-color: #6E7C3D; color: #fff; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(110,124,61,0.35); }
+.btn-light-large { background-color: #6E7C3D; color: #fff; padding: 1.1rem 2.6rem; font-size: 1.1rem; margin-top: 2rem; }
+.btn-light-large:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(110,124,61,0.4); }
+
+/* ---- HEADER ---- */
+.site-header { position: sticky; top: 0; z-index: 100; background-color: rgba(251,246,234,0.94); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(54,46,31,0.08); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+.logo-text { font-family: Georgia, "Iowan Old Style", serif; font-size: 1.25rem; color: #362E1F; }
+.nav-list { display: flex; align-items: center; gap: 2rem; }
+.nav-list a { font-size: 0.85rem; font-weight: 600; color: #6B6250; transition: color 0.2s ease; }
+.nav-list a:hover { color: #6E7C3D; opacity: 1; }
+.nav-cta { background-color: #6E7C3D; color: #fff !important; padding: 0.55rem 1.2rem; border-radius: 999px; }
+.nav-cta:hover { color: #fff !important; opacity: 0.9; }
+.nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0.25rem; }
+.nav-toggle span { display: block; width: 22px; height: 2px; background: #362E1F; }
+
+/* ---- HERO ---- */
+/* overflow NOT hidden here — the .stamp badge below is deliberately
+   positioned to poke past the hero's own bottom edge (asymmetric overlap
+   into the next section); hiding overflow would clip it off. */
+.hero { position: relative; min-height: 88vh; display: flex; align-items: flex-end; padding-bottom: 6rem; }
+.hero-media { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+.hero-img { width: 100%; height: 100%; object-fit: cover; object-position: center 45%; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(54,46,31,0.86) 0%, rgba(54,46,31,0.4) 55%, rgba(110,124,61,0.25) 100%); }
+.hero-content { position: relative; z-index: 2; max-width: 640px; padding-top: 8rem; }
+.hero-title { font-size: clamp(2.4rem, 6vw, 4.2rem); line-height: 1.08; letter-spacing: -0.01em; color: #FBF6EA; margin-bottom: 1.25rem; }
+.hero-lead { font-size: 1.15rem; color: #E4E0C8; max-width: 480px; margin-bottom: 2rem; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.hero-photo-credit { position: absolute; bottom: 0.75rem; right: 1.25rem; z-index: 2; font-size: 0.68rem; color: rgba(251,246,234,0.55); }
+.hero-photo-credit a { color: rgba(251,246,234,0.8); }
+
+/* ---- STATUS BADGE — live öppet-nu, samma mönster som visat sig funka ---- */
+.status-badge { display: inline-flex; align-items: center; gap: 0.6rem; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22); padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.85rem; color: #FBF6EA; margin-bottom: 1.5rem; }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; background: #A9D97A; flex-shrink: 0; animation: status-pulse 2s ease-in-out infinite; }
+.status-dot.is-closed { background: #D9A97A; }
+@keyframes status-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(169,217,122,0.5); } 50% { box-shadow: 0 0 0 6px rgba(169,217,122,0); } }
+@media (prefers-reduced-motion: reduce) { .status-dot { animation: none; } }
+
+/* ---- STIGANDE ÅNGA (regel 11, tematisk dekoration) ---- */
+.steam { position: absolute; left: 8%; bottom: 30%; z-index: 1; pointer-events: none; }
+.wisp { position: absolute; width: 3px; height: 60px; background: linear-gradient(0deg, rgba(251,246,234,0) 0%, rgba(251,246,234,0.45) 50%, rgba(251,246,234,0) 100%); border-radius: 3px; animation: wisp-rise 4s ease-in-out infinite; }
+.wisp--1 { left: 0; animation-delay: 0s; }
+.wisp--2 { left: 14px; animation-delay: 1.3s; }
+.wisp--3 { left: 28px; animation-delay: 2.6s; }
+@keyframes wisp-rise { 0% { transform: translateY(0) scaleY(1); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(-70px) scaleY(1.4); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .wisp { animation: none; opacity: 0; } }
+
+/* ---- STÄMPEL — asymmetriskt utbrytande "sedan 2021"-märke, roterat som
+   en riktig stämpel, som poppar ut över sektionsgränsen. ---- */
+.stamp {
+  position: absolute; right: 6%; bottom: -46px; z-index: 3;
+  width: 92px; height: 92px; border-radius: 50%;
+  background: #6E7C3D; color: #FBF6EA;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  transform: rotate(-8deg); box-shadow: 0 14px 30px rgba(54,46,31,0.3);
+  border: 3px solid #FBF6EA;
+}
+.stamp span { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.stamp strong { font-family: Georgia, serif; font-size: 1.4rem; font-weight: normal; }
+
+/* ---- WAVE DIVIDER ---- */
+.wave-divider { line-height: 0; }
+.wave-divider svg { display: block; width: 100%; height: 40px; }
+.wave-divider--to-tint svg path { fill: #F1EAD4; }
+
+/* ---- MENY — favoriten är en egen, bred banner-artikel (bild vid sidan
+   av text, inte inklämd i grid-matematiken) ovanför ett rent, jämnt
+   3-kolumnsrutnät för resten — det håller proportionerna rimliga i
+   stället för att lämna ett snett antal kort i en fyrkolumnslayout. ---- */
+.drink-featured {
+  display: grid; grid-template-columns: 1fr 1.2fr; align-items: stretch;
+  background: #F1EAD4; border-radius: 14px; overflow: hidden; margin-bottom: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.drink-featured:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(54,46,31,0.14); }
+.drink-featured-img-wrap { aspect-ratio: 4 / 3; overflow: hidden; }
+.drink-featured-body { padding: 1.75rem 2rem; display: flex; flex-direction: column; justify-content: center; }
+.drink-featured .drink-badge {
+  display: inline-block; align-self: flex-start;
+  background: #6E7C3D; color: #FBF6EA; font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; padding: 0.35rem 0.8rem; border-radius: 999px;
+  margin-bottom: 0.85rem;
+}
+.drink-featured .drink-title { font-size: 1.4rem; padding: 0; margin-bottom: 0.5rem; }
+.drink-featured .drink-desc { font-size: 1rem; padding: 0; margin-bottom: 0.85rem; max-width: 42ch; }
+.drink-featured .drink-price { padding: 0; }
+
+.drink-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.drink-card { position: relative; background: #F1EAD4; border-radius: 12px; overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.drink-card:hover { transform: translateY(-5px); box-shadow: 0 14px 28px rgba(54,46,31,0.14); }
+.drink-img-wrap { aspect-ratio: 1 / 1; overflow: hidden; }
+.drink-img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.3s ease; }
+.drink-card:hover .drink-img { transform: scale(1.08); }
+.drink-title { font-size: 1.05rem; padding: 1.1rem 1.1rem 0.4rem; }
+.drink-desc { font-size: 0.88rem; padding: 0 1.1rem; margin-bottom: 0.7rem; }
+.drink-price { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #6E7C3D; padding: 0 1.1rem 1.1rem; }
+
+.photo-credits { font-size: 0.72rem; color: #a39a86; margin-top: 2rem; }
+
+/* ---- ÖPPETTIDER ---- */
+.hours-table { width: 100%; max-width: 460px; border-collapse: collapse; margin-bottom: 1.75rem; }
+.hours-table tr { border-bottom: 1px solid rgba(54,46,31,0.1); }
+.hours-table tr:last-child { border-bottom: none; }
+.hours-table th, .hours-table td { padding: 0.85rem 0; font-size: 1rem; }
+.hours-table th { text-align: left; font-weight: 600; }
+.hours-table td { text-align: right; font-weight: 700; color: #6E7C3D; }
+.hours-note { font-size: 0.95rem; color: #6B6250; }
+
+/* ---- RECENSIONER ---- */
+.rating-badge { display: inline-flex; align-items: center; gap: 1rem; background: #F1EAD4; border-left: 3px solid #6E7C3D; padding: 1.1rem 1.6rem; margin-bottom: 1.25rem; border-radius: 2px; flex-wrap: wrap; }
+.rating-stars { color: #6E7C3D; font-size: 1.2rem; letter-spacing: 0.05em; }
+.rating-text { font-size: 0.95rem; font-weight: 600; }
+.reviews-note { font-size: 0.9rem; }
+
+/* ---- CTA ---- */
+.boka-inner { text-align: center; }
+.boka-lead { color: #D9D4B8; font-size: 1.1rem; max-width: 560px; margin: 0 auto; }
+
+/* ---- KONTAKT ---- */
+.kontakt-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+.kontakt-sub { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #6E7C3D; margin-bottom: 0.75rem; }
+.kontakt-link { font-size: 1rem; font-weight: 700; color: #362E1F; transition: color 0.2s ease; }
+.kontakt-link:hover { color: #6E7C3D; }
+.social-links { display: flex; flex-direction: column; gap: 0.5rem; }
+.social-link { color: #6B6250; font-size: 0.92rem; font-weight: 600; }
+.social-link:hover { color: #6E7C3D; }
+
+/* ---- FOOTER ---- */
+.site-footer { background-color: #362E1F; padding: 2.75rem 0; }
+.footer-inner { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; text-align: center; }
+.footer-logo { font-family: Georgia, serif; font-size: 1.15rem; color: #FBF6EA; }
+.footer-tagline { font-size: 0.85rem; color: #BEB599; }
+.footer-copy { font-size: 0.78rem; color: #8f8770; margin-top: 0.25rem; }
+.site-footer .photo-credits { color: #78715c; margin-top: 0.75rem; }
+.site-footer .photo-credits a { color: #a89f88; }
+
+/* ---- 404 ---- */
+.notfound { min-height: 60vh; display: flex; align-items: center; }
+.notfound-inner { max-width: 60ch; }
+.notfound-inner .lead { margin-bottom: 2rem; }
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 1024px) {
+  .drink-grid { grid-template-columns: repeat(2, 1fr); }
+  .kontakt-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 760px) {
+  .drink-featured { grid-template-columns: 1fr; }
+  .drink-featured-img-wrap { aspect-ratio: 16 / 9; }
+}
+
+@media (max-width: 640px) {
+  .section { padding: 4.5rem 0; }
+  .hero { min-height: 100vh; }
+  .nav-toggle { display: flex; }
+  .nav-list {
+    display: none; flex-direction: column; align-items: flex-start; position: absolute; top: 100%; left: 0; right: 0;
+    background-color: #FBF6EA; border-bottom: 1px solid rgba(54,46,31,0.1); padding: 1.5rem; gap: 1.1rem; z-index: 200;
+  }
+  .nav-list.is-open { display: flex; }
+  .drink-grid { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; }
+  .kontakt-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+}
